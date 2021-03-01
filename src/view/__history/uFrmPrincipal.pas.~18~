@@ -1,0 +1,122 @@
+unit uFrmPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls,
+  Vcl.WinXCtrls, uEspecies, uListaDeEspecies, uAnimal, uListaDeAnimais,
+  uExceptions;
+
+type
+  TForm1 = class(TForm)
+    pgControl: TPageControl;
+    pg1: TTabSheet;
+    pg2: TTabSheet;
+    edtEspecies: TLabeledEdit;
+    edtNomeAnimal: TLabeledEdit;
+    btnInserir2: TButton;
+    btnInserir1: TButton;
+    cmbEspecie: TComboBox;
+    Label2: TLabel;
+    pg3: TTabSheet;
+    cmbAnimais: TComboBox;
+    btnExibir: TButton;
+    btnBusca: TButton;
+    Label1: TLabel;
+    Memo1: TMemo;
+    procedure btnInserir1Click(Sender: TObject);
+    procedure btnInserir2Click(Sender: TObject);
+    procedure btnExibirClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure btnBuscaClick(Sender: TObject);
+  private
+    { Private declarations }
+    oEspecies : TEspecies;
+    oAnimal   : TAnimal;
+    oListaDeEspecies : TListaDeEspecies;
+    oListaDeAnimais  : TListaDeAnimais;
+    procedure InserirEspecie;
+    procedure InserirAnimal;
+    procedure ExibirAnimal;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnBuscaClick(Sender: TObject);
+begin
+  pgControl.TabIndex := pg3.TabIndex;
+  InserirEspecie;
+  cmbAnimais.AddItem(oListaDeEspecies.ToString, NIL);
+end;
+
+procedure TForm1.btnExibirClick(Sender: TObject);
+var
+  oEspecies : TEspecies;
+  oListaDeEspecies : TListaDeEspecies;
+begin
+  for oEspecies in oListaDeEspecies do
+    if cmbAnimais.Items[oEspecies.NomeEspecie] = oEspecies.NomeEspecie then
+  ExibirAnimal;
+end;
+
+procedure TForm1.btnInserir1Click(Sender: TObject);
+begin
+  InserirEspecie;
+  pgControl.TabIndex := pg2.TabIndex;
+end;
+
+procedure TForm1.btnInserir2Click(Sender: TObject);
+begin
+  InserirAnimal;
+  Memo1.Lines.Add(oListaDeAnimais.ToString);
+end;
+
+procedure TForm1.ExibirAnimal;
+begin
+  InserirAnimal;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  oAnimal          := TAnimal.Create;
+  oListaDeAnimais  := TListaDeAnimais.Create;
+  oEspecies        := TEspecies.Create;
+  oListaDeEspecies := TListaDeEspecies.Create;
+end;
+
+procedure TForm1.FormDestroy(Sender: TObject);
+begin
+  if Assigned(oAnimal) then
+      FreeAndNil(oAnimal);
+  if Assigned(oListaDeAnimais) then
+      FreeAndNil(oListaDeAnimais);
+  if Assigned(oEspecies) then
+      FreeAndNil(oEspecies);
+  if Assigned(oListaDeEspecies) then
+      FreeAndNil(oListaDeEspecies);
+end;
+
+procedure TForm1.InserirAnimal;
+begin
+  oAnimal.NomeAnimal                := edtNomeAnimal.Text;
+  oAnimal.EspecieAnimal.NomeEspecie := edtEspecies.Text;
+  oListaDeAnimais.AdicionarAnimal(oAnimal);
+end;
+
+procedure TForm1.InserirEspecie;
+begin
+  oEspecies.NomeEspecie := edtEspecies.Text;
+  oListaDeEspecies.AdicionarLista(oEspecies);
+  cmbEspecie.AddItem(oListaDeEspecies.ToString, NIL);
+end;
+
+end.

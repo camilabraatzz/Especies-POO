@@ -1,0 +1,59 @@
+unit uAnimal;
+
+interface
+
+uses
+  uEspecies;
+
+type
+  TAnimal = class
+  private
+    FNomeDoAnimal : String;
+    FEspecieDoAnimal : TEspecies;
+    function GetEspecieAnimal: TEspecies;
+    function GetNomeAnimal: String;
+    procedure SetEspecieAnimal(const Value: TEspecies);
+    procedure SetNomeAnimal(const Value: String);
+  public
+    property NomeAnimal : String read GetNomeAnimal write SetNomeAnimal;
+    property EspecieAnimal : TEspecies read GetEspecieAnimal write SetEspecieAnimal;
+    function ToString : String; override;
+    constructor Create;
+  end;
+
+implementation
+
+{ TAnimal }
+
+constructor TAnimal.Create;
+begin
+  FEspecieDoAnimal := TEspecies.Create;
+end;
+
+function TAnimal.GetEspecieAnimal: TEspecies;
+begin
+  Result := FEspecieDoAnimal;
+end;
+
+function TAnimal.GetNomeAnimal: String;
+begin
+  Result := FNomeDoAnimal;
+end;
+
+procedure TAnimal.SetEspecieAnimal(const Value: TEspecies);
+begin
+  FEspecieDoAnimal := Value;
+end;
+
+procedure TAnimal.SetNomeAnimal(const Value: String);
+begin
+  FNomeDoAnimal := Value;
+end;
+
+function TAnimal.ToString: String;
+begin
+  Result := 'Nome do animal: ' + FNomeDoAnimal + ' | '
+          + 'Espécie: ' + FEspecieDoAnimal.ToString + sLineBreak;
+end;
+
+end.

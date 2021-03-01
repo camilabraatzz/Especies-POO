@@ -1,0 +1,63 @@
+unit uListaDeEspecies;
+
+interface
+
+uses
+  System.Generics.Collections, uEspecies, System.SysUtils, uAnimal;
+
+type
+  TListaDeEspecies = class
+  private
+    FoListaDeEspecies : TList<TEspecies>;
+    FoListaDeAnimais : TList<TAnimal>;
+    function GetListaDeEspecies: TList<TEspecies>;
+    procedure SetListaDeEspecies(const Value: TList<TEspecies>);
+  public
+    property ListaDeEspecies : TList<TEspecies> read GetListaDeEspecies write SetListaDeEspecies;
+    procedure AdicionarLista(oEspecies : TEspecies);
+    constructor Create;
+    destructor Destroy; override;
+    function ToString: string ; override;
+
+  end;
+
+implementation
+
+{ TListaDeEspecies }
+
+procedure TListaDeEspecies.AdicionarLista(oEspecies : TEspecies);
+begin
+  FoListaDeEspecies.Add(oEspecies);
+end;
+
+constructor TListaDeEspecies.Create;
+begin
+  FoListaDeEspecies := TList<TEspecies>.Create;
+end;
+
+destructor TListaDeEspecies.Destroy;
+begin
+  if Assigned(FoListaDeEspecies) then
+    FreeAndNil(FoListaDeEspecies);
+  inherited;
+end;
+
+function TListaDeEspecies.GetListaDeEspecies: TList<TEspecies>;
+begin
+  Result := FoListaDeEspecies;
+end;
+
+procedure TListaDeEspecies.SetListaDeEspecies(const Value: TList<TEspecies>);
+begin
+  FoListaDeEspecies := Value;
+end;
+
+function TListaDeEspecies.ToString: string;
+var
+  oEspecie : TEspecies;
+begin
+  for oEspecie in FoListaDeEspecies do
+    Result := oEspecie.ToString;
+end;
+
+end.

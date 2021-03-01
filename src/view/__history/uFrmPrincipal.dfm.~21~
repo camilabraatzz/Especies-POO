@@ -1,0 +1,138 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Animais'
+  ClientHeight = 408
+  ClientWidth = 251
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pgControl: TPageControl
+    Left = 0
+    Top = 0
+    Width = 251
+    Height = 408
+    ActivePage = pg3
+    Align = alClient
+    TabOrder = 0
+    ExplicitHeight = 436
+    object pg1: TTabSheet
+      Caption = 'Esp'#233'cies'
+      ExplicitLeft = 8
+      ExplicitTop = 28
+      ExplicitWidth = 439
+      ExplicitHeight = 295
+      object edtEspecies: TLabeledEdit
+        Left = 24
+        Top = 27
+        Width = 201
+        Height = 21
+        EditLabel.Width = 81
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Nome da esp'#233'cie'
+        TabOrder = 0
+      end
+      object btnInserir1: TButton
+        Left = 150
+        Top = 64
+        Width = 75
+        Height = 25
+        Caption = 'Inserir'
+        TabOrder = 1
+        OnClick = btnInserir1Click
+      end
+    end
+    object pg2: TTabSheet
+      Caption = 'Animais'
+      ImageIndex = 1
+      ExplicitLeft = 8
+      ExplicitTop = 28
+      object Label2: TLabel
+        Left = 24
+        Top = 9
+        Width = 79
+        Height = 13
+        Caption = 'Escolher esp'#233'cie'
+      end
+      object edtNomeAnimal: TLabeledEdit
+        Left = 24
+        Top = 67
+        Width = 201
+        Height = 21
+        EditLabel.Width = 75
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Nome do animal'
+        TabOrder = 1
+      end
+      object btnInserir2: TButton
+        Left = 24
+        Top = 94
+        Width = 75
+        Height = 25
+        Caption = 'Inserir'
+        TabOrder = 2
+        OnClick = btnInserir2Click
+      end
+      object cmbEspecie: TComboBox
+        Left = 24
+        Top = 24
+        Width = 201
+        Height = 21
+        TabOrder = 0
+      end
+      object btnBusca: TButton
+        Left = 150
+        Top = 94
+        Width = 75
+        Height = 25
+        Caption = 'Fazer busca'
+        TabOrder = 3
+        OnClick = btnBuscaClick
+      end
+      object Memo1: TMemo
+        Left = 24
+        Top = 125
+        Width = 201
+        Height = 233
+        TabOrder = 4
+      end
+    end
+    object pg3: TTabSheet
+      Caption = 'Filtrar esp'#233'cie'
+      ImageIndex = 2
+      ExplicitLeft = 8
+      ExplicitTop = 28
+      object Label1: TLabel
+        Left = 24
+        Top = 11
+        Width = 67
+        Height = 13
+        Caption = 'Filtrar esp'#233'cie'
+      end
+      object cmbAnimais: TComboBox
+        Left = 16
+        Top = 30
+        Width = 209
+        Height = 21
+        TabOrder = 0
+      end
+      object btnExibir: TButton
+        Left = 150
+        Top = 57
+        Width = 75
+        Height = 25
+        Caption = 'Exibir'
+        TabOrder = 1
+        OnClick = btnExibirClick
+      end
+    end
+  end
+end

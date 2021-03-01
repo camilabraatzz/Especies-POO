@@ -1,0 +1,29 @@
+unit uEspecies;
+
+interface
+
+type
+  TEspecies = class
+  private
+    FNomeEspecie : String;
+    function GetNomeEspecie: String;
+    procedure SetNomeEspecie(const Value: String);
+  public
+    property NomeEspecie : String read GetNomeEspecie write SetNomeEspecie;
+  end;
+
+implementation
+
+{ TEspecies }
+
+function TEspecies.GetNomeEspecie: String;
+begin
+  Result := FNomeEspecie;
+end;
+
+procedure TEspecies.SetNomeEspecie(const Value: String);
+begin
+  FNomeEspecie := Value
+end;
+
+end.

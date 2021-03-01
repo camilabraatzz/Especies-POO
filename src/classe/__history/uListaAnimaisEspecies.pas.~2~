@@ -1,0 +1,14 @@
+unit uListaAnimaisEspecies;
+
+interface
+
+type
+  TListaAnimaisEspecies = class
+  private
+    FoListaAimaisEspecies : TList<TAnimal>
+  public
+  end;
+
+implementation
+
+end.

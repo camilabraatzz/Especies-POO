@@ -1,0 +1,41 @@
+unit uAnimal;
+
+interface
+
+uses
+  uExceptions;
+
+type
+  TAnimal = class
+  private
+    FNomeDoAnimal : String;
+    function GetNomeAnimal: String;
+    procedure SetNomeAnimal(const Value: String);
+  public
+    property NomeAnimal : String read GetNomeAnimal write SetNomeAnimal;
+    function ToString : String; override;
+  end;
+
+implementation
+
+{ TAnimal }
+
+
+function TAnimal.GetNomeAnimal: String;
+begin
+  Result := FNomeDoAnimal;
+end;
+
+procedure TAnimal.SetNomeAnimal(const Value: String);
+begin
+  if Value = '' then
+    raise ENomeObrigatorio.Create;
+  FNomeDoAnimal := Value;
+end;
+
+function TAnimal.ToString: String;
+begin
+  Result := FNomeDoAnimal;
+end;
+
+end.

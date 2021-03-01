@@ -1,0 +1,60 @@
+unit uListaDeAnimais;
+
+interface
+
+uses
+  System.Generics.Collections, uAnimal, System.SysUtils;
+
+type
+  TListaDeAnimais = class
+  private
+    FoAnimais : TList<TAnimal>;
+    function GetAnimais: TList<TAnimal>;
+    procedure SetAnimais(const Value: TList<TAnimal>);
+  public
+    property Animais : TList<TAnimal> read GetAnimais write SetAnimais;
+    constructor Create;
+    destructor Destroy; override;
+    function ToString : String; override;
+    procedure AdicionarAnimal(AoAnimal : TAnimal);
+  end;
+implementation
+
+{ TListaDeAnimais }
+
+procedure TListaDeAnimais.AdicionarAnimal(AoAnimal: TAnimal);
+begin
+  FoAnimais.Add(AoAnimal);
+end;
+
+constructor TListaDeAnimais.Create;
+begin
+  FoAnimais := TList<TAnimal>.Create;
+end;
+
+destructor TListaDeAnimais.Destroy;
+begin
+  if Assigned(FoAnimais) then
+    FreeAndNil(FoAnimais);
+  inherited;
+end;
+
+function TListaDeAnimais.GetAnimais: TList<TAnimal>;
+begin
+  Result := FoAnimais;
+end;
+
+procedure TListaDeAnimais.SetAnimais(const Value: TList<TAnimal>);
+begin
+  FoAnimais := Value;
+end;
+
+function TListaDeAnimais.ToString: String;
+var
+  oAnimal : TAnimal;
+begin
+  for oAnimal in FoAnimais do
+    Result :=   oAnimal.ToString;
+end;
+
+end.

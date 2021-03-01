@@ -1,0 +1,68 @@
+unit uEspecies;
+
+interface
+
+uses
+  uExceptions, System.Generics.Collections, uListaDeAnimais, System.SysUtils;
+
+type
+  TEspecies = class
+  private
+    FNomeEspecie : String;
+    FListaDeAnimais : TList<TListaDeAnimais>;
+    function GetNomeEspecie: String;
+    procedure SetNomeEspecie(const Value: String);
+    function GetListaDeAnimais: TList<TListaDeAnimais>;
+    procedure SetListaDeAnimais(const Value: TList<TListaDeAnimais>);
+  public
+    property NomeEspecie : String read GetNomeEspecie write SetNomeEspecie;
+    property ListaDeAnimais : TList<TListaDeAnimais> read GetListaDeAnimais write SetListaDeAnimais;
+    function ToString : string; override;
+    constructor Create;
+    destructor Destroy; override;
+  end;
+
+implementation
+
+{ TEspecies }
+
+constructor TEspecies.Create;
+begin
+  FListaDeAnimais := TList<TListaDeAnimais>.Create;
+end;
+
+destructor TEspecies.Destroy;
+begin
+   if Assigned(FListaDeAnimais) then
+     FreeAndNil(FListaDeAnimais);
+  inherited;
+end;
+
+function TEspecies.GetListaDeAnimais: TList<TListaDeAnimais>;
+begin
+  Result := FListaDeAnimais;
+end;
+
+function TEspecies.GetNomeEspecie: String;
+begin
+  Result := FNomeEspecie;
+end;
+
+procedure TEspecies.SetListaDeAnimais(const Value: TList<TListaDeAnimais>);
+begin
+  FListaDeAnimais := Value;
+end;
+
+procedure TEspecies.SetNomeEspecie(const Value: String);
+begin
+  if Value = '' then
+    raise ENomeObrigatorio.Create;
+  FNomeEspecie := Value
+end;
+
+function TEspecies.ToString: string;
+begin
+  Result := FNomeEspecie;
+end;
+
+end.

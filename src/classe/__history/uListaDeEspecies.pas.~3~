@@ -1,0 +1,53 @@
+unit uListaDeEspecies;
+
+interface
+
+uses
+  System.Generics.Collections, uListaDeAnimais, System.SysUtils;
+
+type
+  TListaDeEspecies = class
+  private
+    FoListaDeEspecies : TList<TListaDeAnimais>;
+    function GetListaDeEspecies: TList<TListaDeAnimais>;
+    procedure SetListaDeEspecies(const Value: TList<TListaDeAnimais>);
+  public
+    property ListaDeEspecies : TList<TListaDeAnimais> read GetListaDeEspecies write SetListaDeEspecies;
+    procedure AdicionarLista(oListaDeAnimais : TListaDeAnimais);
+    constructor Create;
+    destructor Destroy; override;
+
+  end;
+
+implementation
+
+{ TListaDeEspecies }
+
+procedure TListaDeEspecies.AdicionarLista(oListaDeAnimais: TListaDeAnimais);
+begin
+  FoListaDeEspecies.Add(oListaDeAnimais);
+end;
+
+constructor TListaDeEspecies.Create;
+begin
+  FoListaDeEspecies := TList<TListaDeAnimais>.Create;
+end;
+
+destructor TListaDeEspecies.Destroy;
+begin
+  if Assigned(FoListaDeEspecies) then
+    FreeAndNil(FoListaDeEspecies);
+  inherited;
+end;
+
+function TListaDeEspecies.GetListaDeEspecies: TList<TListaDeAnimais>;
+begin
+  Result := FoListaDeEspecies;
+end;
+
+procedure TListaDeEspecies.SetListaDeEspecies(const Value: TList<TListaDeAnimais>);
+begin
+  FoListaDeEspecies := Value;
+end;
+
+end.

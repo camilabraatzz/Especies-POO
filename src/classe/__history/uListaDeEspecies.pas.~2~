@@ -1,0 +1,32 @@
+unit uListaDeEspecies;
+
+interface
+
+uses
+  System.Generics.Collections, uListaDeAnimais;
+
+type
+  TListaDeEspecies = class
+  private
+    FoListaDeEspecies : TList<TListaDeAnimais>;
+    function GetListaDeEspecies: TList<TListaDeAnimais>;
+    procedure SetListaDeEspecies(const Value: TList<TListaDeAnimais>);
+  public
+    property ListaDeEspecies : TList<TListaDeAnimais> read GetListaDeEspecies write SetListaDeEspecies;
+  end;
+
+implementation
+
+{ TListaDeEspecies }
+
+function TListaDeEspecies.GetListaDeEspecies: TList<TListaDeAnimais>;
+begin
+  Result := FoListaDeEspecies;
+end;
+
+procedure TListaDeEspecies.SetListaDeEspecies(const Value: TList<TListaDeAnimais>);
+begin
+  FoListaDeEspecies := Value;
+end;
+
+end.
